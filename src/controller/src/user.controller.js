@@ -1,6 +1,6 @@
 const {
     queryUserById
-} = require('../service/user.service')
+} = require('../../service/src/user.service')
 class UserController {
     async create(ctx, next) {
         const result = await queryUserById()

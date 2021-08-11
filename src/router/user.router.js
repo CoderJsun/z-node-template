@@ -1,7 +1,7 @@
 const Router = require('koa-router')
 const {
     create
-} = require('../controller/user.controller')
+} = require('../controller/src/user.controller')
 // 用户接口集合
 
 // 创建用户Api
