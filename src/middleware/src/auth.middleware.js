@@ -1,38 +1,83 @@
 // const jwt = require('jsonwebtoken')
-// 验证账号
-const verficationAction = async (ctx, next) => {
-    // const {
-    //     name,
-    //     password
-    // } = ctx.request.body
+// const MD5 = require('../untils/password.handle')
+// const types = require('../app/error/error.types')
+// const servce = require('../service/user.service')
 
-    // // 1. 账号密码空的情况
-    // if (!name || !password) {
-    //     const error = new Error(types.ACCOUNT_OR_PASSWORD_NULL)
-    //     return ctx.app.emit('error', error, ctx)
-    // }
+// const {
+//     publicKey
+// } = require('../keys')
 
-    // // 2.验证用户名和密码
-    // const result = await queryUser(name)
+// // 账号权限验证
+// const verficationAccount = async (ctx, next) => {
+//     const {
+//         name,
+//         password
+//     } = ctx.request.body
 
-    // const user = result[0]
+//     // 1. 账号密码空的情况
+//     if (!name || !password) {
+//         const error = new Error(types.ACCOUNT_OR_PASSWORD_NULL)
+//         return ctx.app.emit('error', error, ctx)
+//     }
 
-    // if (!user) {
-    //     const error = new Error(types.ACCOUNT_NOT_FOUND)
-    //     return ctx.app.emit('error', error, ctx)
-    // }
+//     // 2.验证用户名和密码
+//     const result = await servce.queryUser(name)
+//     const user = result[0]
+//     if (!user) {
+//         const error = new Error(types.ACCOUNT_NOT_FOUND)
+//         return ctx.app.emit('error', error, ctx)
+//     }
 
-    // // 3.验证密码
-    // if (MD5(password) != user.password) {
-    //     const error = new Error(types.PASSWORD_ERROR)
-    //     return ctx.app.emit('error', error, ctx)
-    // }
+//     // 3.验证密码
+//     if (MD5(password) != user.password) {
+//         const error = new Error(types.PASSWORD_ERROR)
+//         return ctx.app.emit('error', error, ctx)
+//     }
 
-    // // 4.执行任务
-    // await next()
-}
+//     // 将用户信息进行绑定
+//     ctx.user = user
+
+//     console.log('middleware 验证通过 ~')
+
+//     // 4.执行任务
+//     await next()
+// }
+
+// // 鉴权
+// const verifyAuthority = async (ctx, next) => {
+//     console.log('verifyAuthority~')
+//     // 获取  const authorization = ctx.headers.authorization
+//     const authority = ctx.headers.authorization
+//     if (!authority) {
+//         const error = new Error(types.INVALID_TOKEN)
+//         return ctx.app.emit('error', error, ctx)
+//     }
+//     const token = authority.replace('Bearer ', '')
+
+//     try {
+
+//         const result = jwt.verify(token, publicKey, {
+//             algorithms: ['RS256']
+//         })
+
+//         console.log(result)
+
+//         if (result) {
+//             ctx.user = result
+//         }
+
+//         await next()
+
+//     } catch {
+//         // 鉴权失败~
+//         const error = new Error(types.INVALID_TOKEN)
+//         return ctx.app.emit('error', error, ctx)
+//     }
+
+// }
 
 
-module.exports = {
-    verficationAction
-}
+// module.exports = {
+//     verficationAccount,
+//     verifyAuthority
+// }
